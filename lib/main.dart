@@ -1,43 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:Gonzalez0490/login.dart';
+import 'package:Gonzalez0490/signup.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      body: SafeArea(
+          child: Container(
+        width: double.infinity,
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Text(
+                  "Bienvenido",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Lugar de musica .Lugar de arte .Lugar de vida",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 15,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 3,
+              decoration: BoxDecoration(
+                  image:
+                      DecorationImage(image: AssetImage("assets/marca1.jpg"))),
+            ),
+            Column(
+              children: <Widget>[
+                MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.black),
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Text(
+                    "Inicio",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  ),
+                ),
+                SizedBox(height: 20),
+                MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignupPage()));
+                  },
+                  color: Color(0xffff0000),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Text(
+                    "Registrarse",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                )
+              ],
+            )
+          ],
         ),
-      ),
+      )),
     );
   }
 }
